@@ -26,11 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-//        $reminders = Reminder::all();
-//
-//        foreach ($reminders as $reminder) {
-//            $schedule->job(new SendReminder($reminder))->cron($reminder->expression);
-//        }
+        $reminders = Reminder::all();
+
+        foreach ($reminders as $reminder) {
+            $schedule->job(new SendReminder($reminder))->cron($reminder->expression);
+        }
     }
 
     /**
