@@ -2,8 +2,8 @@
 
 namespace App\Console;
 
-use App\Reminder;
 use App\Jobs\SendReminder;
+use App\Reminder;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,7 +27,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $reminders = Reminder::all();
-
         foreach ($reminders as $reminder) {
             $schedule->job(new SendReminder($reminder))->cron($reminder->expression);
         }
@@ -40,7 +39,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

@@ -4,10 +4,10 @@ namespace App\Jobs;
 
 use App\Reminder;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class SendReminder implements ShouldQueue
 {
@@ -35,10 +35,19 @@ class SendReminder implements ShouldQueue
         $client = new \GuzzleHttp\Client();
 
         $client->request('GET', $this->buildRequestUrl());
+
+        $this->deleteIfRunOnceIsEnabled();
     }
 
     private function buildRequestUrl()
     {
-        return "https://api.telegram.org/bot".config('telegram.secret')."/sendMessage?chat_id=".config('telegram.chat_id')."&text={$this->reminder->body}";
+        return "https://api.telegram.org/bot" . config('telegram.secret') . "/sendMessage?chat_id=" . config('telegram.chat_id') . "&text={$this->reminder->body}";
+    }
+
+    private function deleteIfRunOnceIsEnabled()
+    {
+        if ($this->reminder->run_once) {
+            $this->reminder->delete();
+        }
     }
 }

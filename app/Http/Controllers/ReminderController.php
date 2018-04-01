@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Reminder;
 use App\Helpers\Date;
+use App\Http\Requests\Reminder\StoreRequest;
+use App\Reminder;
+use App\Scheduler\FrequencyBuilder;
 use Cron\CronExpression;
 use Illuminate\Http\Request;
-use App\Scheduler\FrequencyBuilder;
-use App\Http\Requests\Reminder\StoreRequest;
 
 class ReminderController extends Controller
 {
@@ -18,7 +18,7 @@ class ReminderController extends Controller
      */
     public function index()
     {
-        $date = new Date;
+        $date      = new Date;
         $reminders = Reminder::latest()->paginate();
 
         return view('reminders.index', compact('reminders', 'date'));
@@ -32,7 +32,7 @@ class ReminderController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $params = (object)$request->all();
+        $params = (object) $request->all();
 
         $expression = $this->buildCronExpression($params);
 
@@ -56,17 +56,16 @@ class ReminderController extends Controller
         return redirect(route('reminders.index'));
     }
 
-
     protected function createReminder($params, $expression)
     {
         Reminder::create([
-            'body' => $params->body ?: 'No body',
-            'frequency' => $params->frequency,
-            'day' => $params->day ?: null,
-            'date' => $params->date ?: null,
-            'time' => $params->time,
+            'body'       => $params->body ?: 'No body',
+            'frequency'  => $params->frequency,
+            'day'        => $params->day ?: null,
+            'date'       => $params->date ?: null,
+            'time'       => $params->time,
             'expression' => $expression,
-            'run_once' => isset($params->run_once)
+            'run_once'   => isset($params->run_once),
         ]);
     }
 
@@ -78,7 +77,7 @@ class ReminderController extends Controller
         $builder->frequency($params->frequency);
         $builder->day($params->day);
         $builder->date($params->date);
-        $builder->time((int)$hour, (int)$minute);
+        $builder->time((int) $hour, (int) $minute);
 
         return $builder->expression();
     }
