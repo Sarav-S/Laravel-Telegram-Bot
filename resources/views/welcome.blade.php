@@ -8,14 +8,14 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet"> 
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                font-family: 'Open Sans', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 36px;
             }
 
             .links > a {
@@ -62,6 +62,18 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .plus {
+                display: inline-block;
+                position: relative;
+                font-size: 180px;
+                margin: 0 40px;
+            }
+
+            .img-responsive {
+                width: 100%;
+                max-width: 150px;
+            }
         </style>
     </head>
     <body>
@@ -69,25 +81,23 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Reminders</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <img src="{{ asset('images/telegram.png') }}" 
+                        alt="{{ asset('images/telegram.png') }}"
+                        class="img-responsive">
+                    <span class="plus">+</span>
+                    <img src="{{ asset('images/laravel.svg') }}" 
+                        alt="{{ asset('images/laravel.svg') }}"
+                        class="img-responsive">
+                    <h3>Laravel : Telegram Reminder</h3>
                 </div>
             </div>
         </div>
