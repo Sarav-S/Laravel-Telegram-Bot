@@ -2,14 +2,13 @@
 
 namespace App\Scheduler;
 
-use App\Scheduler\Frequencies;
 use Carbon\Carbon;
 use Cron\CronExpression;
 
 abstract class Event
 {
     use Frequencies;
-    
+
     /**
      * The cron expression for this event.
      *
@@ -27,8 +26,9 @@ abstract class Event
     /**
      * Check if the event is due to run.
      *
-     * @param  Carbon  $date
-     * @return boolean
+     * @param Carbon $date
+     *
+     * @return bool
      */
     public function isDueToRun(Carbon $date)
     {

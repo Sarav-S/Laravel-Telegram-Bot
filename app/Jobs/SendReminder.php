@@ -41,7 +41,7 @@ class SendReminder implements ShouldQueue
 
     private function buildRequestUrl()
     {
-        return "https://api.telegram.org/bot" . config('telegram.secret') . "/sendMessage?chat_id=" . config('telegram.chat_id') . "&text={$this->reminder->body}";
+        return 'https://api.telegram.org/bot'.config('telegram.secret').'/sendMessage?chat_id='.config('telegram.chat_id')."&text={$this->reminder->body}";
     }
 
     private function deleteIfRunOnceIsEnabled()

@@ -2,8 +2,6 @@
 
 namespace App\Scheduler;
 
-use App\Scheduler\Frequencies;
-
 class FrequencyBuilder
 {
     use Frequencies;

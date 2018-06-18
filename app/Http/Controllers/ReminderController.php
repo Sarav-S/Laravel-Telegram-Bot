@@ -7,7 +7,6 @@ use App\Http\Requests\Reminder\StoreRequest;
 use App\Reminder;
 use App\Scheduler\FrequencyBuilder;
 use Cron\CronExpression;
-use Illuminate\Http\Request;
 
 class ReminderController extends Controller
 {
@@ -18,7 +17,7 @@ class ReminderController extends Controller
      */
     public function index()
     {
-        $date      = new Date;
+        $date = new Date();
         $reminders = Reminder::latest()->paginate();
 
         return view('reminders.index', compact('reminders', 'date'));
@@ -27,7 +26,8 @@ class ReminderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Reminder\StoreRequest $request
+     * @param \App\Http\Requests\Reminder\StoreRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
@@ -46,7 +46,8 @@ class ReminderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Reminder $reminder)
