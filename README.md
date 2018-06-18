@@ -1,5 +1,6 @@
 # Laravel Telegram Bot
 
+<img src="https://github.styleci.io/repos/123873859/shield"/>
 
 ### Installation
 
