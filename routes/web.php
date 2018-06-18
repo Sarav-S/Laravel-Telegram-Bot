@@ -1,11 +1,11 @@
 <?php
 
 Route::get('/', function () {
-	if (auth()->check()) {
-		return redirect(route('reminders.index'));
-	}
+    if (auth()->check()) {
+        return redirect(route('reminders.index'));
+    }
 
-	return view('welcome');
+    return view('welcome');
 });
 
 Route::group(['middleware' => 'auth'], function () {

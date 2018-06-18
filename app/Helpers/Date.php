@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
+use DateInterval;
 use DatePeriod;
 use DateTime;
-use DateInterval;
 
 class Date
 {
@@ -18,8 +18,8 @@ class Date
     public static function frequencies()
     {
         return [
-            'daily' => 'Every day',
-            'weekly' => 'Every week',
+            'daily'   => 'Every day',
+            'weekly'  => 'Every week',
             'monthly' => 'Every month',
         ];
     }
@@ -42,9 +42,9 @@ class Date
         $ends = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 
         if ((($value % 100) >= 11) && (($value % 100) <= 13)) {
-            return $value . 'th';
+            return $value.'th';
         }
 
-        return $value . $ends[$value % 10];
+        return $value.$ends[$value % 10];
     }
 }

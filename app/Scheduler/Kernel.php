@@ -2,7 +2,6 @@
 
 namespace App\Scheduler;
 
-use App\Scheduler\Event;
 use Carbon\Carbon;
 
 class Kernel
