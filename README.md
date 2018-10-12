@@ -29,6 +29,6 @@ $ php artisan config:cache
 $ php artisan migrate
 ```
 
-This will set the application key, clear cache and then migrate the necessary files. Thats it! 
+This will set the application key, clears the application cache and then migrates the necessary files. Thats it! 
 
 Now you can go ahead and register yourself to use the application :)
